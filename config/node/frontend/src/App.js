@@ -1,11 +1,19 @@
+import {Suspense} from 'react';
+import {RouterProvider} from 'react-router-dom';
+import {CircularProgress} from "@mui/material";
+
+import routes from './routes/Router';
 import './styles/style.scss';
-import Home from "./pages/Home";
+
 
 function App() {
   return (
     <div className="app">
-        <Home/>
-
+        <Suspense
+            fallback={
+            <CircularProgress color="inherit" />}>
+        <RouterProvider router={routes}/>
+        </Suspense>
     </div>
   );
 }
