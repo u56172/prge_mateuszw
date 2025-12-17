@@ -10,15 +10,21 @@ def connect_to_db(dv_name:str, db_user: str, dbpassword: str):
         f"postgresql://{db_name}:{db_password}@postgis:5432/{db_name}"
     )
 
-
 @router_insert.get("/insert_user")
 async def endpoint():
 
     try:
         db_connection = connect_to_db(db_name=db_name, db_user=db_user, db_password=db_password)
+
+        params = {
+            "name": "Asia",
+            "posts": 4,
+            "location": 'Warszawa'
+        }
+
         sql_querry = text("""
         INSERT INTO users (name, posts, location)
-        VALUES ('Jan', 3, 'Gdańsk');
+        VALUES (:name, :posts, :location);
         """)
 
         with db_connection.connect() as conn:
