@@ -2,7 +2,7 @@ name: build_and_push_and_deploy
 on:
   push:
     branches:
-      - env_test
+      - env-test
 
 permissions:
   contents: read
@@ -23,6 +23,7 @@ jobs:
       - name: uruchom-środowisko-docker-compose
         env:
           ENV_NAME: ${{github.ref_name}}
+          POSTGRES_PORT: ${{secrets.POSTGRES_PORT}}
           #DB
           POSTGRES_DB: ${{secrets.POSTGRES_DB}}
           POSTGRES_USER: ${{secrets.POSTGRES_USER}}
