@@ -22,8 +22,8 @@ async def insert_user():
         }
 
         sql_query = text("""
-                         INSERT INTO users (name, posts, location)
-                         VALUES (:name, :posts, :location);
+                            INSERT INTO public.users (name, posts, location)
+                            VALUES (:name, :posts, :location);
                          """)
 
 
